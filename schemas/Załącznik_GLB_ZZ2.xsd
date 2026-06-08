@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:etd="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/09/13/eD/DefinicjeTypy/" xmlns:zz2="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2025/09/03/eD/GLBZZ2/" targetNamespace="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2025/09/03/eD/GLBZZ2/" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:lang="pl">
+	<xsd:import namespace="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/09/13/eD/DefinicjeTypy/" schemaLocation="http://crd.gov.pl/xml/schematy/dziedzinowe/mf/2022/09/13/eD/DefinicjeTypy/StrukturyDanych_v12-0E.xsd"/>
+	<!--Załącznik do zawiadomienia GLB-Z2.-->
+	<xsd:complexType name="TNaglowek_GLB_ZZ2">
+		<xsd:annotation>
+			<xsd:documentation>Nagłówek zawiadomienia</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="KodFormularza">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="zz2:TKodFormularza_GLB_ZZ2">
+							<xsd:attribute name="kodSystemowy" type="xsd:string" use="required" fixed="GLBZZ2 (1)"/>
+							<xsd:attribute name="wersjaSchemy" type="xsd:string" use="required" fixed="1-0E"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="WariantFormularza">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:byte">
+						<xsd:enumeration value="1"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="OkresOd">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="zz2:TLData">
+							<xsd:attribute name="poz" type="xsd:string" use="required" fixed="P_3"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="OkresDo">
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="zz2:TLData">
+							<xsd:attribute name="poz" type="xsd:string" use="required" fixed="P_4"/>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="TKodFormularza_GLB_ZZ2">
+		<xsd:annotation>
+			<xsd:documentation>Symbol wzoru formularza</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="GLB/ZZ2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TLData">
+		<xsd:annotation>
+			<xsd:documentation>Ograniczenie daty</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="etd:TData">
+			<xsd:minInclusive value="2024-01-01"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="Zalacznik_GLB_ZZ2">
+		<xsd:annotation>
+			<xsd:documentation>ZAŁĄCZNIK DO ZAWIADOMIENIA O DANYCH JEDNOSTKI SKŁADOWEJ SKŁADAJĄCEJ INFORMACJĘ O OPODATKOWANIU WYRÓWNAWCZYM ORAZ O JURYSDYKCJI, W KTÓREJ JEDNOSTKA JEST ZLOKALIZOWANA</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Naglowek">
+					<xsd:annotation>
+						<xsd:documentation>Nagłówek zawiadomienia</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:complexContent>
+							<xsd:extension base="zz2:TNaglowek_GLB_ZZ2"/>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Podmiot1">
+					<xsd:annotation>
+						<xsd:documentation>Dane identyfikacyjne jednostki składającej zawiadomienie</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:complexContent>
+							<xsd:extension base="etd:TPodmiotDowolnyBezAdresu3">
+								<xsd:attribute name="rola" type="xsd:string" use="required" fixed="Jednostka składająca zawiadomienie"/>
+							</xsd:extension>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="Podmiot2">
+					<xsd:annotation>
+						<xsd:documentation>Dane identyfikacyjne jednostki składowej</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:complexContent>
+							<xsd:extension base="etd:TPodmiotDowolnyBezAdresu3">
+								<xsd:attribute name="rola" type="xsd:string" use="required" fixed="Jednostka składowa"/>
+							</xsd:extension>
+						</xsd:complexContent>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+<xsd:unique name="klucz_NIP">
+			<xsd:selector xpath="zz2:Podmiot1|zz2:Podmiot2"/>
+			<xsd:field xpath="etd:OsobaFizyczna/etd:NIP|etd:OsobaNiefizyczna/etd:NIP"/>
+		</xsd:unique>
+	</xsd:element>
+</xsd:schema>
