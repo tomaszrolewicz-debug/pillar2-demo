@@ -1,0 +1,51 @@
+{
+  "okres_od": "2024-01-01",
+  "okres_do": "2024-12-31",
+  "nip": "1234567890",
+  "pelna_nazwa": "Przykładowa Spółka Polska S.A.",
+  "filing_info": {
+    "filing_ce": {
+      "kraj": "PL",
+      "nazwa": "Przykładowa Spółka Polska S.A.",
+      "tin": "1234567890",
+      "rola": "Designated"
+    },
+    "accounting_info": {
+      "cfs_upe": "IFRS",
+      "fas": "IFRS as adopted by the EU",
+      "waluta": "EUR"
+    },
+    "okres_od": "2024-01-01",
+    "okres_do": "2024-12-31",
+    "nazwa_mne": "Example MNE Group",
+    "uwagi": "",
+    "doc_ref_id": "FI-DOC-2024-001",
+    "doc_type": "OECD1"
+  },
+  "jurysdykcje_rec": ["PL", "DE", "FR"],
+  "upe_lista": [
+    {
+      "tin": "DE123456789",
+      "kraj": "DE",
+      "nazwa": "Example Holdings GmbH"
+    }
+  ],
+  "summary_lista": [
+    {
+      "kod_jurysdykcji": "DE",
+      "safe_harbour": "STSH",
+      "etr_range": "C",
+      "globe_tut": "",
+      "doc_ref_id": "SUM-DE-2024-001",
+      "doc_type": "OECD1"
+    },
+    {
+      "kod_jurysdykcji": "PL",
+      "safe_harbour": "",
+      "etr_range": "C",
+      "globe_tut": "",
+      "doc_ref_id": "SUM-PL-2024-001",
+      "doc_type": "OECD1"
+    }
+  ]
+}
